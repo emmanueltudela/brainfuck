@@ -34,7 +34,7 @@ void test_llist_empty() {
     assert(sllist_empty(llist));
 
     // Non empty
-    sllist_append(llist, 'a');
+    llist = sllist_append(llist, 'a');
 
     assert(!sllist_empty(llist));
 
@@ -43,8 +43,8 @@ void test_llist_empty() {
 
 void test_llist_previous() {
     sllist *llist = sllist_create();
-    sllist_prepend(llist, 'a');
-    sllist_prepend(llist, 'b');
+    llist = sllist_prepend(llist, 'a');
+    llist = sllist_prepend(llist, 'b');
 
     sllist *prev = sllist_previous(llist);
     assert(sllist_value(prev) == 'b');
@@ -55,8 +55,8 @@ void test_llist_previous() {
 
 void test_llist_next() {
     sllist *llist = sllist_create();
-    sllist_append(llist, 'a');
-    sllist_append(llist, 'b');
+    llist = sllist_append(llist, 'a');
+    llist = sllist_append(llist, 'b');
 
     sllist *next = sllist_next(llist);
     assert(sllist_value(next) == 'b');
@@ -67,11 +67,13 @@ void test_llist_next() {
 
 void test_llist_append() {
     sllist *llist = sllist_create();
-    sllist_append(llist, 'a');
-    sllist_append(llist, 'b');
+    llist = sllist_append(llist, 'a');
+    llist = sllist_append(llist, 'b');
+    llist = sllist_append(llist, 'c');
 
     sllist *next = sllist_next(llist);
-    assert(sllist_value(next) == 'b');
+    assert(sllist_value(next) == 'c');
+    assert(sllist_value(sllist_next(next)) == 'b');
 
     sllist_free(llist);
     sllist_free(next);
@@ -79,11 +81,13 @@ void test_llist_append() {
 
 void test_llist_prepend() {
     sllist *llist = sllist_create();
-    sllist_prepend(llist, 'a');
-    sllist_prepend(llist, 'b');
+    llist = sllist_prepend(llist, 'a');
+    llist = sllist_prepend(llist, 'b');
+    llist = sllist_prepend(llist, 'c');
 
     sllist *prev = sllist_previous(llist);
-    assert(sllist_value(prev) == 'b');
+    assert(sllist_value(prev) == 'c');
+    assert(sllist_value(sllist_previous(prev)) == 'b');
 
     sllist_free(llist);
     sllist_free(prev);
@@ -91,7 +95,7 @@ void test_llist_prepend() {
 
 void test_llist_value() {
     sllist *llist = sllist_create();
-    sllist_prepend(llist, 'a');
+    llist = sllist_prepend(llist, 'a');
 
     assert(sllist_value(llist) == 'a');
 
@@ -100,12 +104,21 @@ void test_llist_value() {
 
 void test_llist_remove() {
     sllist *llist = sllist_create();
-    sllist_prepend(llist, 'a');
-    sllist_prepend(llist, 'b');
+    llist = sllist_prepend(llist, 'a');
+    llist = sllist_prepend(llist, 'b');
+    llist = sllist_prepend(llist, 'c');
+
+    llist = sllist_remove(llist);
+
+    assert(sllist_value(llist) == 'c');
 
     llist = sllist_remove(llist);
 
     assert(sllist_value(llist) == 'b');
+
+    llist = sllist_remove(llist);
+
+    assert(sllist_empty(llist));
 
     sllist_free(llist);
 }

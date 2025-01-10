@@ -4,7 +4,7 @@ enable_testing()
 
 project(brainfuck)
 
-set(SOURCES src/brainfuck.c src/queue.c src/stack.c src/stripe.c)
+set(SOURCES src/brainfuck.c src/queue.c src/stack.c src/stripe.c src/linked_list.c)
 
 add_executable(main src/main.c ${SOURCES})
 add_executable(brainfuck_test tests/brainfuck_test.c ${SOURCES})
