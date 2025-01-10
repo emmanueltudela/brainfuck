@@ -8,10 +8,20 @@ typedef struct queue {
     sllist *llist;
 } squeue;
 
-squeue *squeue_create();
-void squeue_free();
+squeue *squeue_create() {
+    return NULL;
+}
 
-bool squeue_empty();
+void squeue_free() {
+}
 
-void squeue_enqueue(squeue *queue, char val);
-char squeue_dequeue(squeue *queue);
+bool squeue_empty() {
+    return false;
+}
+
+void squeue_enqueue(squeue *queue, char val) {
+}
+
+char squeue_dequeue(squeue *queue) {
+    return '\0';
+}
