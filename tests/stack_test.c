@@ -37,6 +37,9 @@ void test_stack_push() {
     for (int i = 0; i < 2 * STACK_DEFL_SIZE; i++) {
         stack_push(stack, 'a');
     }
+    for (int i = 0; i < 2 * STACK_DEFL_SIZE; i++) {
+        assert(stack_pop(stack) == 'a');
+    }
 
     stack_free(stack);
 }
