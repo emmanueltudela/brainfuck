@@ -4,16 +4,47 @@
 #include <string.h>
 #include <assert.h>
 
+#include "stack.h"
+
 void test_stack_create() {
+    sstack *stack = stack_create();
+    stack_free(stack);
 }
 
 void test_stack_free() {
+    sstack *stack = stack_create();
+    stack_free(stack);
 }
 
 void test_stack_push() {
+    sstack *stack = stack_create();
+
+    stack_push(stack, 'a');
+    stack_push(stack, 'b');
+
+    assert(stack_pop(stack) == 'b');
+    assert(stack_pop(stack) == 'a');
+
+    // Test push over STACK_DEFL_SIZE for realloc
+    for (int i = 0; i < 2 * STACK_DEFL_SIZE; i++) {
+        stack_push(stack, 'a');
+    }
+
+    stack_free(stack);
 }
 
 void test_stack_pop() {
+    sstack *stack = stack_create();
+
+    stack_push(stack, 'a');
+    stack_push(stack, 'b');
+
+    assert(stack_pop(stack) == 'b');
+    assert(stack_pop(stack) == 'a');
+
+    // Don't test stack_pop on empty that causes error
+
+    stack_free(stack);
 }
 
 void usage(char *exec) {
@@ -22,7 +53,7 @@ void usage(char *exec) {
 
 int main(int argc, char *argv[]) {
     if (argc != 2) {
-        usage();
+        usage(argv[0]);
         return EXIT_FAILURE;
     }
 
