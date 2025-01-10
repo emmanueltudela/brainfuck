@@ -16,6 +16,14 @@ void test_stack_free() {
     stack_free(stack);
 }
 
+void test_stack_empty() {
+    sstack *stack = stack_create();
+    assert(stack_empty(stack));
+
+    stack_push(stack, 'a');
+    assert(!stack_empty(stack));
+}
+
 void test_stack_push() {
     sstack *stack = stack_create();
 
@@ -42,6 +50,8 @@ void test_stack_pop() {
     assert(stack_pop(stack) == 'b');
     assert(stack_pop(stack) == 'a');
 
+    assert(stack_empty(stack));
+
     // Don't test stack_pop on empty that causes error
 
     stack_free(stack);
@@ -63,6 +73,8 @@ int main(int argc, char *argv[]) {
         test_stack_create();
     } else if (strcmp(testname, "stack_free") == 0) {
         test_stack_free();
+    } else if (strcmp(testname, "stack_empty") == 0) {
+        test_stack_empty();
     } else if (strcmp(testname, "stack_push") == 0) {
         test_stack_push();
     } else if (strcmp(testname, "stack_pop") == 0) {
