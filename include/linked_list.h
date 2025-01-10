@@ -12,6 +12,9 @@ void sllist_free(sllist *llist);
 
 bool sllist_empty(sllist *llist);
 
+sllist *sllist_previous(sllist *llist);
+sllist *sllist_next(sllist *llist);
+
 sllist *sllist_append(sllist *llist, char val);
 sllist *sllist_prepend(sllist *llist, char val);
 
