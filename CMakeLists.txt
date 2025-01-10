@@ -33,3 +33,10 @@ add_test(NAME llist_append COMMAND linked_list_test llist_append)
 add_test(NAME llist_prepend COMMAND linked_list_test llist_prepend)
 add_test(NAME llist_value COMMAND linked_list_test llist_value)
 add_test(NAME llist_remove COMMAND linked_list_test llist_remove)
+
+# queue_test
+add_test(NAME queue_create COMMAND queue_test queue_create)
+add_test(NAME queue_free COMMAND queue_test queue_free)
+add_test(NAME queue_empty COMMAND queue_test queue_empty)
+add_test(NAME queue_enqueue COMMAND queue_test queue_enqueue)
+add_test(NAME queue_dequeue COMMAND queue_test queue_dequeue)
