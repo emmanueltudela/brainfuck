@@ -1,11 +1,10 @@
 #ifndef __STACK_H__
 #define __STACK_H__
 
-typedef struct stack {
-    char *arr;
-    int size;
-    int top;
-} sstack;
+#define STACK_DEFL_SIZE 10
+
+// made to work with char for brainfuck
+typedef struct stack sstack;
 
 sstack *stack_create();
 void stack_free(sstack *stack);
