@@ -14,3 +14,10 @@ add_executable(stripe_test tests/stripe_test.c ${SOURCES})
 
 add_compile_options(-std=c99 -Wall -g)
 include_directories(include)
+
+# stack_test
+add_test(NAME stack_create COMMAND stack_test stack_create)
+add_test(NAME stack_free COMMAND stack_test stack_free)
+add_test(NAME stack_empty COMMAND stack_test stack_empty)
+add_test(NAME stack_push COMMAND stack_test stack_push)
+add_test(NAME stack_pop COMMAND stack_test stack_pop)

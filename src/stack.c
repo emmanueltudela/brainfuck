@@ -38,7 +38,8 @@ bool stack_empty(sstack *stack) {
     return stack->top == 0;
 }
 
-void stack_push(sstack *stack, char val);
+void stack_push(sstack *stack, char val) {
+}
 
 char stack_pop(sstack *stack) {
     if (!stack) {
