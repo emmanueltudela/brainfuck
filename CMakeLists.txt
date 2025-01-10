@@ -13,3 +13,4 @@ add_executable(stack_test tests/stack_test.c ${SOURCES})
 add_executable(stripe_test tests/stripe_test.c ${SOURCES})
 
 add_compile_options(-std=c99 -Wall -g)
+include_directories(include)
