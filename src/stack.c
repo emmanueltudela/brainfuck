@@ -65,5 +65,8 @@ char stack_pop(sstack *stack) {
         exit(EXIT_FAILURE);
     }
 
-    return stack->arr[stack->top - 1];
+    char val = stack->arr[stack->top - 1];
+    stack->top--;
+
+    return val;
 }
