@@ -31,32 +31,83 @@ void test_llist_empty() {
     sllist *llist = sllist_create();
 
     // Empty
-    assert(llist_empty(llist));
+    assert(sllist_empty(llist));
 
     // Non empty
     sllist_append(llist, 'a');
 
-    assert(!llist_empty(llist));
+    assert(!sllist_empty(llist));
 
     sllist_free(llist);
 }
 
 void test_llist_previous() {
+    sllist *llist = sllist_create();
+    sllist_prepend(llist, 'a');
+    sllist_prepend(llist, 'b');
+
+    sllist *prev = sllist_previous(llist);
+    assert(sllist_value(prev) == 'b');
+
+    sllist_free(llist);
+    sllist_free(prev);
 }
 
 void test_llist_next() {
+    sllist *llist = sllist_create();
+    sllist_append(llist, 'a');
+    sllist_append(llist, 'b');
+
+    sllist *next = sllist_next(llist);
+    assert(sllist_value(next) == 'b');
+
+    sllist_free(llist);
+    sllist_free(next);
 }
 
 void test_llist_append() {
+    sllist *llist = sllist_create();
+    sllist_append(llist, 'a');
+    sllist_append(llist, 'b');
+
+    sllist *next = sllist_next(llist);
+    assert(sllist_value(next) == 'b');
+
+    sllist_free(llist);
+    sllist_free(next);
 }
 
 void test_llist_prepend() {
+    sllist *llist = sllist_create();
+    sllist_prepend(llist, 'a');
+    sllist_prepend(llist, 'b');
+
+    sllist *prev = sllist_previous(llist);
+    assert(sllist_value(prev) == 'b');
+
+    sllist_free(llist);
+    sllist_free(prev);
 }
 
 void test_llist_value() {
+    sllist *llist = sllist_create();
+    sllist_prepend(llist, 'a');
+
+    assert(sllist_value(llist) == 'a');
+
+    sllist_free(llist);
 }
 
 void test_llist_remove() {
+    sllist *llist = sllist_create();
+    sllist_prepend(llist, 'a');
+    sllist_prepend(llist, 'b');
+
+    llist = sllist_remove(llist);
+
+    assert(sllist_value(llist) == 'b');
+
+    sllist_free(llist);
 }
 
 void usage(char *exec) {
