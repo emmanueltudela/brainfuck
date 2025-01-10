@@ -9,7 +9,7 @@ typedef struct stack {
     int top;
 } sstack;
 
-sstack *stack_create() {
+sstack *sstack_create() {
     sstack *stack = malloc(sizeof(sstack));
     if (!stack) return NULL;
 
@@ -24,12 +24,12 @@ sstack *stack_create() {
     stack->top = 0;
 }
 
-void stack_free(sstack *stack) {
+void sstack_free(sstack *stack) {
     free(stack->arr);
     free(stack);
 }
 
-bool stack_empty(sstack *stack) {
+bool sstack_empty(sstack *stack) {
     if (!stack) {
         fprintf(stderr, "Cannot get empty from NULL stack\n");
         exit(EXIT_FAILURE);
@@ -38,7 +38,7 @@ bool stack_empty(sstack *stack) {
     return stack->top == 0;
 }
 
-void stack_push(sstack *stack, char val) {
+void sstack_push(sstack *stack, char val) {
     if (!stack) {
         fprintf(stderr, "Cannot push to NULL stack\n");
         exit(EXIT_FAILURE);
@@ -54,13 +54,13 @@ void stack_push(sstack *stack, char val) {
     stack->top++;
 }
 
-char stack_pop(sstack *stack) {
+char sstack_pop(sstack *stack) {
     if (!stack) {
         fprintf(stderr, "Cannot pop from NULL stack\n");
         exit(EXIT_FAILURE);
     }
 
-    if (stack_empty(stack)) {
+    if (sstack_empty(stack)) {
         fprintf(stderr, "Cannot pop from empty stack\n");
         exit(EXIT_FAILURE);
     }
