@@ -4,7 +4,9 @@ enable_testing()
 
 project(brainfuck)
 
-set(SOURCES src/brainfuck.c src/queue.c src/stack.c src/stripe.c src/linked_list.c)
+include(CTest)
+
+set(SOURCES src/brainfuck.c src/queue.c src/stack.c src/stripe.c src/linked_list.c src/linked_list_aux.c)
 
 add_executable(main src/main.c ${SOURCES})
 add_executable(brainfuck_test tests/brainfuck_test.c ${SOURCES})
@@ -12,6 +14,7 @@ add_executable(queue_test tests/queue_test.c ${SOURCES})
 add_executable(stack_test tests/stack_test.c ${SOURCES})
 add_executable(stripe_test tests/stripe_test.c ${SOURCES})
 add_executable(linked_list_test tests/linked_list_test.c ${SOURCES})
+add_executable(linked_list_aux_test tests/linked_list_aux_test.c ${SOURCES})
 
 add_compile_options(-std=c99 -Wall -g)
 include_directories(include)
@@ -40,3 +43,12 @@ add_test(NAME queue_free COMMAND queue_test queue_free)
 add_test(NAME queue_empty COMMAND queue_test queue_empty)
 add_test(NAME queue_enqueue COMMAND queue_test queue_enqueue)
 add_test(NAME queue_dequeue COMMAND queue_test queue_dequeue)
+add_test(NAME queue_push COMMAND queue_test queue_push)
+add_test(NAME queue_eject COMMAND queue_test queue_eject)
+
+# linked_list_aux_test
+add_test(NAME llist_aux_append COMMAND linked_list_aux_test llist_aux_append)
+add_test(NAME llist_aux_prepend COMMAND linked_list_aux_test llist_aux_prepend)
+add_test(NAME llist_aux_remove_all COMMAND linked_list_aux_test llist_aux_remove_all)
+add_test(NAME llist_aux_first COMMAND linked_list_aux_test llist_aux_first)
+add_test(NAME llist_aux_last COMMAND linked_list_aux_test llist_aux_last)
