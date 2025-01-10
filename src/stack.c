@@ -39,6 +39,19 @@ bool stack_empty(sstack *stack) {
 }
 
 void stack_push(sstack *stack, char val) {
+    if (!stack) {
+        fprintf(stderr, "Cannot push to NULL stack\n");
+        exit(EXIT_FAILURE);
+    }
+
+    // stack full
+    if (stack->top >= stack->size) {
+        stack->arr = realloc(sizeof(char) * stack->size * 2);
+        stack->size = stack->size * 2;
+    }
+
+    stack->arr[stack->top] = val;
+    stack->top++;
 }
 
 char stack_pop(sstack *stack) {
