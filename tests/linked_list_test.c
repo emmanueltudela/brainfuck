@@ -22,7 +22,7 @@ void test_llist_free() {
     llist = sllist_create();
 
     // Non empty
-    sllist_append(llist, 'a');
+    llist = sllist_append(llist, 'a');
 
     sllist_free(llist);
 }
@@ -75,8 +75,11 @@ void test_llist_append() {
     assert(sllist_value(next) == 'c');
     assert(sllist_value(sllist_next(next)) == 'b');
 
+    for (int i = 0; i < 3; i++) {
+        llist = sllist_remove(llist);
+    }
+
     sllist_free(llist);
-    sllist_free(next);
 }
 
 void test_llist_prepend() {
@@ -89,8 +92,11 @@ void test_llist_prepend() {
     assert(sllist_value(prev) == 'c');
     assert(sllist_value(sllist_previous(prev)) == 'b');
 
+    for (int i = 0; i < 3; i++) {
+        llist = sllist_remove(llist);
+    }
+
     sllist_free(llist);
-    sllist_free(prev);
 }
 
 void test_llist_value() {

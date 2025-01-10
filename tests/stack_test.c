@@ -22,6 +22,8 @@ void test_stack_empty() {
 
     sstack_push(stack, 'a');
     assert(!sstack_empty(stack));
+
+    sstack_free(stack);
 }
 
 void test_stack_push() {
