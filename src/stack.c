@@ -46,7 +46,7 @@ void stack_push(sstack *stack, char val) {
 
     // stack full
     if (stack->top >= stack->size) {
-        stack->arr = realloc(sizeof(char) * stack->size * 2);
+        stack->arr = realloc(stack->arr, sizeof(char) * stack->size * 2);
         stack->size = stack->size * 2;
     }
 
