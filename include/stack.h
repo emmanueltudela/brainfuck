@@ -10,6 +10,8 @@ typedef struct stack sstack;
 sstack *sstack_create();
 void sstack_free(sstack *stack);
 
+/* Is stack empty
+ */
 bool sstack_empty(sstack *stack);
 
 void sstack_push(sstack *stack, char val);
