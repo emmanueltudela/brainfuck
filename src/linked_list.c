@@ -213,3 +213,19 @@ sllist *sllist_remove(sllist *llist) {
 
     return new;
 }
+
+void sllist_set(sllist *llist, stype_val val) {
+    llist->val = val;
+}
+
+void sllist_set_i(sllist *llist, int val) {
+    stype_val val_s;
+    val_s.i = val;
+    sllist_set(llist, val_s);
+}
+
+void sllist_set_c(sllist *llist, char val) {
+    stype_val val_s;
+    val_s.c = val;
+    sllist_set(llist, val_s);
+}

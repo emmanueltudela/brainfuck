@@ -216,6 +216,39 @@ void test_llist_remove() {
     sllist_free(llist);
 }
 
+void test_llist_set() {
+    sllist *llist = sllist_create();
+    llist = sllist_prepend_i(llist, 1);
+
+    sllist_set_i(llist, 2);
+
+    assert(sllist_value_i(llist) == 2);
+
+    sllist_free(llist);
+}
+
+void test_llist_set_i() {
+    sllist *llist = sllist_create();
+    llist = sllist_prepend_i(llist, 1);
+
+    sllist_set_i(llist, 2);
+
+    assert(sllist_value_i(llist) == 2);
+
+    sllist_free(llist);
+}
+
+void test_llist_set_c() {
+    sllist *llist = sllist_create();
+    llist = sllist_prepend_c(llist, 'a');
+
+    sllist_set_c(llist, 'b');
+
+    assert(sllist_value_c(llist) == 'b');
+
+    sllist_free(llist);
+}
+
 void usage(char *exec) {
     printf("%s test_name\n");
 }
@@ -258,6 +291,12 @@ int main(int argc, char *argv[]) {
         test_llist_value_i();
     } else if (strcmp(testname, "llist_value_c") == 0) {
         test_llist_value_c();
+    } else if (strcmp(testname, "llist_set") == 0) {
+        test_llist_set();
+    } else if (strcmp(testname, "llist_set_i") == 0) {
+        test_llist_set_i();
+    } else if (strcmp(testname, "llist_set_c") == 0) {
+        test_llist_set_c();
     }
 
     return EXIT_SUCCESS;

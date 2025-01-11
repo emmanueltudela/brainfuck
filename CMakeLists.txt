@@ -42,6 +42,9 @@ add_test(NAME llist_append_c COMMAND linked_list_test llist_append_c)
 add_test(NAME llist_prepend_c COMMAND linked_list_test llist_prepend_c)
 add_test(NAME llist_value_i COMMAND linked_list_test llist_value_i)
 add_test(NAME llist_value_c COMMAND linked_list_test llist_value_c)
+add_test(NAME llist_set COMMAND linked_list_test llist_set)
+add_test(NAME llist_set_i COMMAND linked_list_test llist_set_i)
+add_test(NAME llist_set_c COMMAND linked_list_test llist_set_c)
 
 # queue_test
 add_test(NAME queue_create COMMAND queue_test queue_create)

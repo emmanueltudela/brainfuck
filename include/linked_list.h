@@ -29,6 +29,11 @@ stype_val sllist_value(sllist *llist);
 int sllist_value_i(sllist *llist);
 char sllist_value_c(sllist *llist);
 
+void sllist_set(sllist *llist, stype_val val);
+
+void sllist_set_i(sllist *llist, int val);
+void sllist_set_c(sllist *llist, char val);
+
 sllist *sllist_remove(sllist *llist);
 
 #endif
