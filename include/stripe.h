@@ -12,6 +12,7 @@ void sstripe_cursor_previous(sstripe *stripe);
 void sstripe_cursor_next(sstripe *stripe);
 
 int sstripe_current(sstripe *stripe);
+void sstripe_current_set(sstripe *stripe, int val);
 void sstripe_current_pred(sstripe *stripe);
 void sstripe_current_succ(sstripe *stripe);
 

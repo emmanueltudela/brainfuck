@@ -66,3 +66,14 @@ add_test(NAME llist_aux_append_i COMMAND linked_list_aux_test llist_aux_append_i
 add_test(NAME llist_aux_prepend_i COMMAND linked_list_aux_test llist_aux_prepend_i)
 add_test(NAME llist_aux_append_c COMMAND linked_list_aux_test llist_aux_append_c)
 add_test(NAME llist_aux_prepend_c COMMAND linked_list_aux_test llist_aux_prepend_c)
+
+# stripe_test
+add_test(NAME stripe_create COMMAND stripe_test stripe_create)
+add_test(NAME stripe_free COMMAND stripe_test stripe_free)
+add_test(NAME stripe_cursor COMMAND stripe_test stripe_cursor)
+add_test(NAME stripe_cursor_previous COMMAND stripe_test stripe_cursor_previous)
+add_test(NAME stripe_cursor_next COMMAND stripe_test stripe_cursor_next)
+add_test(NAME stripe_current COMMAND stripe_test stripe_current)
+add_test(NAME stripe_current_set COMMAND stripe_test stripe_current_set)
+add_test(NAME stripe_current_pred COMMAND stripe_test stripe_current_pred)
+add_test(NAME stripe_current_succ COMMAND stripe_test stripe_current_succ)
