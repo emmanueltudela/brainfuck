@@ -131,6 +131,11 @@ void sbrainfuck_iter(sbrainfuck *bf) {
             break;
         case ',':
             int o = getchar();
+
+            while ((char)o == '\n') {
+                o = getchar();
+            }
+
             sstripe_current_set(bf->stripe, (char)o);
             break;
         case '[':
