@@ -22,7 +22,7 @@ void test_llist_free() {
     llist = sllist_create();
 
     // Non empty
-    llist = sllist_append(llist, 'a');
+    llist = sllist_append_c(llist, 'a');
 
     sllist_free(llist);
 }
@@ -34,7 +34,7 @@ void test_llist_empty() {
     assert(sllist_empty(llist));
 
     // Non empty
-    llist = sllist_append(llist, 'a');
+    llist = sllist_append_c(llist, 'a');
 
     assert(!sllist_empty(llist));
 
@@ -43,11 +43,11 @@ void test_llist_empty() {
 
 void test_llist_previous() {
     sllist *llist = sllist_create();
-    llist = sllist_prepend(llist, 'a');
-    llist = sllist_prepend(llist, 'b');
+    llist = sllist_prepend_c(llist, 'a');
+    llist = sllist_prepend_c(llist, 'b');
 
     sllist *prev = sllist_previous(llist);
-    assert(sllist_value(prev) == 'b');
+    assert(sllist_value_c(prev) == 'b');
 
     sllist_free(llist);
     sllist_free(prev);
@@ -55,11 +55,11 @@ void test_llist_previous() {
 
 void test_llist_next() {
     sllist *llist = sllist_create();
-    llist = sllist_append(llist, 'a');
-    llist = sllist_append(llist, 'b');
+    llist = sllist_append_c(llist, 'a');
+    llist = sllist_append_c(llist, 'b');
 
     sllist *next = sllist_next(llist);
-    assert(sllist_value(next) == 'b');
+    assert(sllist_value_c(next) == 'b');
 
     sllist_free(llist);
     sllist_free(next);
@@ -67,13 +67,13 @@ void test_llist_next() {
 
 void test_llist_append() {
     sllist *llist = sllist_create();
-    llist = sllist_append(llist, 'a');
-    llist = sllist_append(llist, 'b');
-    llist = sllist_append(llist, 'c');
+    llist = sllist_append_c(llist, 'a');
+    llist = sllist_append_c(llist, 'b');
+    llist = sllist_append_c(llist, 'c');
 
     sllist *next = sllist_next(llist);
-    assert(sllist_value(next) == 'c');
-    assert(sllist_value(sllist_next(next)) == 'b');
+    assert(sllist_value_c(next) == 'c');
+    assert(sllist_value_c(sllist_next(next)) == 'b');
 
     for (int i = 0; i < 3; i++) {
         llist = sllist_remove(llist);
@@ -84,13 +84,81 @@ void test_llist_append() {
 
 void test_llist_prepend() {
     sllist *llist = sllist_create();
-    llist = sllist_prepend(llist, 'a');
-    llist = sllist_prepend(llist, 'b');
-    llist = sllist_prepend(llist, 'c');
+    llist = sllist_prepend_c(llist, 'a');
+    llist = sllist_prepend_c(llist, 'b');
+    llist = sllist_prepend_c(llist, 'c');
 
     sllist *prev = sllist_previous(llist);
-    assert(sllist_value(prev) == 'c');
-    assert(sllist_value(sllist_previous(prev)) == 'b');
+    assert(sllist_value_c(prev) == 'c');
+    assert(sllist_value_c(sllist_previous(prev)) == 'b');
+
+    for (int i = 0; i < 3; i++) {
+        llist = sllist_remove(llist);
+    }
+
+    sllist_free(llist);
+}
+
+void test_llist_append_i() {
+    sllist *llist = sllist_create();
+    llist = sllist_append_i(llist, 1);
+    llist = sllist_append_i(llist, 2);
+    llist = sllist_append_i(llist, 3);
+
+    sllist *next = sllist_next(llist);
+    assert(sllist_value_i(next) == 3);
+    assert(sllist_value_i(sllist_next(next)) == 2);
+
+    for (int i = 0; i < 3; i++) {
+        llist = sllist_remove(llist);
+    }
+
+    sllist_free(llist);
+}
+
+void test_llist_prepend_i() {
+    sllist *llist = sllist_create();
+    llist = sllist_prepend_c(llist, 1);
+    llist = sllist_prepend_c(llist, 2);
+    llist = sllist_prepend_c(llist, 3);
+
+    sllist *prev = sllist_previous(llist);
+    assert(sllist_value_c(prev) == 3);
+    assert(sllist_value_c(sllist_previous(prev)) == 2);
+
+    for (int i = 0; i < 3; i++) {
+        llist = sllist_remove(llist);
+    }
+
+    sllist_free(llist);
+}
+
+void test_llist_append_c() {
+    sllist *llist = sllist_create();
+    llist = sllist_append_c(llist, 'a');
+    llist = sllist_append_c(llist, 'b');
+    llist = sllist_append_c(llist, 'c');
+
+    sllist *next = sllist_next(llist);
+    assert(sllist_value_c(next) == 'c');
+    assert(sllist_value_c(sllist_next(next)) == 'b');
+
+    for (int i = 0; i < 3; i++) {
+        llist = sllist_remove(llist);
+    }
+
+    sllist_free(llist);
+}
+
+void test_llist_prepend_c() {
+    sllist *llist = sllist_create();
+    llist = sllist_prepend_c(llist, 'a');
+    llist = sllist_prepend_c(llist, 'b');
+    llist = sllist_prepend_c(llist, 'c');
+
+    sllist *prev = sllist_previous(llist);
+    assert(sllist_value_c(prev) == 'c');
+    assert(sllist_value_c(sllist_previous(prev)) == 'b');
 
     for (int i = 0; i < 3; i++) {
         llist = sllist_remove(llist);
@@ -101,26 +169,45 @@ void test_llist_prepend() {
 
 void test_llist_value() {
     sllist *llist = sllist_create();
-    llist = sllist_prepend(llist, 'a');
 
-    assert(sllist_value(llist) == 'a');
+    llist = sllist_prepend_c(llist, 'a');
+
+    assert(sllist_value_c(llist) == 'a');
+
+    sllist_free(llist);
+}
+
+void test_llist_value_i() {
+    sllist *llist = sllist_create();
+    llist = sllist_prepend_c(llist, 'a');
+
+    assert(sllist_value_c(llist) == 'a');
+
+    sllist_free(llist);
+}
+
+void test_llist_value_c() {
+    sllist *llist = sllist_create();
+    llist = sllist_prepend_i(llist, 1);
+
+    assert(sllist_value_i(llist) == 1);
 
     sllist_free(llist);
 }
 
 void test_llist_remove() {
     sllist *llist = sllist_create();
-    llist = sllist_prepend(llist, 'a');
-    llist = sllist_prepend(llist, 'b');
-    llist = sllist_prepend(llist, 'c');
+    llist = sllist_prepend_c(llist, 'a');
+    llist = sllist_prepend_c(llist, 'b');
+    llist = sllist_prepend_c(llist, 'c');
 
     llist = sllist_remove(llist);
 
-    assert(sllist_value(llist) == 'c');
+    assert(sllist_value_c(llist) == 'c');
 
     llist = sllist_remove(llist);
 
-    assert(sllist_value(llist) == 'b');
+    assert(sllist_value_c(llist) == 'b');
 
     llist = sllist_remove(llist);
 
@@ -159,6 +246,18 @@ int main(int argc, char *argv[]) {
         test_llist_value();
     } else if (strcmp(testname, "llist_remove") == 0) {
         test_llist_remove();
+    } else if (strcmp(testname, "llist_append_i") == 0) {
+        test_llist_append_i();
+    } else if (strcmp(testname, "llist_prepend_i") == 0) {
+        test_llist_prepend_i();
+    } else if (strcmp(testname, "llist_append_c") == 0) {
+        test_llist_append_c();
+    } else if (strcmp(testname, "llist_prepend_c") == 0) {
+        test_llist_prepend_c();
+    } else if (strcmp(testname, "llist_value_i") == 0) {
+        test_llist_value_i();
+    } else if (strcmp(testname, "llist_value_c") == 0) {
+        test_llist_value_c();
     }
 
     return EXIT_SUCCESS;

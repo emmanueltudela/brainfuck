@@ -3,7 +3,8 @@
 
 #include <stdbool.h>
 
-// Made to work with char for brainfuck
+#include "type_val.h"
+
 typedef struct llist sllist;
 
 // Empty sllist is NULL
@@ -15,10 +16,18 @@ bool sllist_empty(sllist *llist);
 sllist *sllist_previous(sllist *llist);
 sllist *sllist_next(sllist *llist);
 
-sllist *sllist_append(sllist *llist, char val);
-sllist *sllist_prepend(sllist *llist, char val);
+sllist *sllist_append(sllist *llist, stype_val val);
+sllist *sllist_prepend(sllist *llist, stype_val val);
 
-char sllist_value(sllist *llist);
+sllist *sllist_append_i(sllist *llist, int val);
+sllist *sllist_prepend_i(sllist *llist, int val);
+sllist *sllist_append_c(sllist *llist, char val);
+sllist *sllist_prepend_c(sllist *llist, char val);
+
+stype_val sllist_value(sllist *llist);
+
+int sllist_value_i(sllist *llist);
+char sllist_value_c(sllist *llist);
 
 sllist *sllist_remove(sllist *llist);
 

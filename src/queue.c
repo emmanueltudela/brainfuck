@@ -28,7 +28,7 @@ bool squeue_empty(squeue *queue) {
 }
 
 void squeue_enqueue(squeue *queue, char val) {
-    queue->llist = sllist_aux_append(queue->llist, val);
+    queue->llist = sllist_aux_append_c(queue->llist, val);
 }
 
 char squeue_dequeue(squeue *queue) {
@@ -38,13 +38,13 @@ char squeue_dequeue(squeue *queue) {
     }
 
     sllist *first = sllist_aux_first(queue->llist);
-    char res = sllist_value(first);
+    char res = sllist_value_c(first);
     queue->llist = sllist_remove(first);
     return res;
 }
 
 void squeue_push(squeue *queue, char val) {
-    queue->llist = sllist_aux_prepend(queue->llist, val);
+    queue->llist = sllist_aux_prepend_c(queue->llist, val);
 }
 
 char squeue_eject(squeue *queue) {
@@ -54,7 +54,7 @@ char squeue_eject(squeue *queue) {
     }
 
     sllist *last = sllist_aux_last(queue->llist);
-    char res = sllist_value(last);
+    char res = sllist_value_c(last);
     queue->llist = sllist_remove(last);
     return res;
 }

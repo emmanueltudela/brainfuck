@@ -5,7 +5,6 @@
 
 #define STACK_DEFL_SIZE 10
 
-// made to work with char for brainfuck
 typedef struct stack sstack;
 
 sstack *sstack_create();

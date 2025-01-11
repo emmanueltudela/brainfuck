@@ -10,13 +10,13 @@
 void test_llist_aux_first() {
     sllist *llist = sllist_create();
 
-    llist = sllist_append(llist, 'a');
+    llist = sllist_append_c(llist, 'a');
 
-    assert(sllist_value(sllist_aux_first(llist)) == 'a');
+    assert(sllist_value_c(sllist_aux_first(llist)) == 'a');
 
-    llist = sllist_prepend(llist, 'b');
+    llist = sllist_prepend_c(llist, 'b');
 
-    assert(sllist_value(sllist_aux_first(llist)) == 'b');
+    assert(sllist_value_c(sllist_aux_first(llist)) == 'b');
 
     llist = sllist_aux_remove_all(llist);
 
@@ -26,13 +26,13 @@ void test_llist_aux_first() {
 void test_llist_aux_last() {
     sllist *llist = sllist_create();
 
-    llist = sllist_append(llist, 'a');
+    llist = sllist_append_c(llist, 'a');
 
-    assert(sllist_value(sllist_aux_last(llist)) == 'a');
+    assert(sllist_value_c(sllist_aux_last(llist)) == 'a');
 
-    llist = sllist_append(llist, 'b');
+    llist = sllist_append_c(llist, 'b');
 
-    assert(sllist_value(sllist_aux_last(llist)) == 'b');
+    assert(sllist_value_c(sllist_aux_last(llist)) == 'b');
 
     llist = sllist_aux_remove_all(llist);
 
@@ -42,12 +42,12 @@ void test_llist_aux_last() {
 void test_llist_aux_append() {
     sllist *llist = sllist_create();
 
-    llist = sllist_append(llist, 'a');
-    llist = sllist_append(llist, 'b');
+    llist = sllist_append_c(llist, 'a');
+    llist = sllist_append_c(llist, 'b');
 
-    sllist_aux_append(llist, 'c');
+    llist = sllist_aux_append_c(llist, 'c');
 
-    assert(sllist_value(sllist_next(sllist_next(llist))) == 'c');
+    assert(sllist_value_c(sllist_next(sllist_next(llist))) == 'c');
 
     llist = sllist_aux_remove_all(llist);
 
@@ -57,12 +57,72 @@ void test_llist_aux_append() {
 void test_llist_aux_prepend() {
     sllist *llist = sllist_create();
 
-    llist = sllist_prepend(llist, 'a');
-    llist = sllist_prepend(llist, 'b');
+    llist = sllist_prepend_c(llist, 'a');
+    llist = sllist_prepend_c(llist, 'b');
 
-    sllist_aux_prepend(llist, 'c');
+    llist = sllist_aux_prepend_c(llist, 'c');
 
-    assert(sllist_value(sllist_previous(sllist_previous(llist))) == 'c');
+    assert(sllist_value_c(sllist_previous(sllist_previous(llist))) == 'c');
+
+    llist = sllist_aux_remove_all(llist);
+
+    sllist_free(llist);
+}
+
+void test_llist_aux_append_i() {
+    sllist *llist = sllist_create();
+
+    llist = sllist_append_i(llist, 1);
+    llist = sllist_append_i(llist, 2);
+
+    llist = sllist_aux_append_i(llist, 3);
+
+    assert(sllist_value_i(sllist_next(sllist_next(llist))) == 3);
+
+    llist = sllist_aux_remove_all(llist);
+
+    sllist_free(llist);
+}
+
+void test_llist_aux_prepend_i() {
+    sllist *llist = sllist_create();
+
+    llist = sllist_prepend_i(llist, 1);
+    llist = sllist_prepend_i(llist, 2);
+
+    llist = sllist_aux_prepend_i(llist, 3);
+
+    assert(sllist_value_i(sllist_previous(sllist_previous(llist))) == 3);
+
+    llist = sllist_aux_remove_all(llist);
+
+    sllist_free(llist);
+}
+
+void test_llist_aux_append_c() {
+    sllist *llist = sllist_create();
+
+    llist = sllist_append_c(llist, 'a');
+    llist = sllist_append_c(llist, 'b');
+
+    llist = sllist_aux_append_c(llist, 'c');
+
+    assert(sllist_value_c(sllist_next(sllist_next(llist))) == 'c');
+
+    llist = sllist_aux_remove_all(llist);
+
+    sllist_free(llist);
+}
+
+void test_llist_aux_prepend_c() {
+    sllist *llist = sllist_create();
+
+    llist = sllist_prepend_c(llist, 'a');
+    llist = sllist_prepend_c(llist, 'b');
+
+    llist = sllist_aux_prepend_c(llist, 'c');
+
+    assert(sllist_value_c(sllist_previous(sllist_previous(llist))) == 'c');
 
     llist = sllist_aux_remove_all(llist);
 
@@ -72,8 +132,8 @@ void test_llist_aux_prepend() {
 void test_llist_aux_remove_all() {
     sllist *llist = sllist_create();
 
-    llist = sllist_append(llist, 'a');
-    llist = sllist_append(llist, 'b');
+    llist = sllist_append_c(llist, 'a');
+    llist = sllist_append_c(llist, 'b');
 
     llist = sllist_aux_remove_all(llist);
 
@@ -104,6 +164,14 @@ int main(int argc, char *argv[]) {
         test_llist_aux_first();
     } else if (strcmp(testname, "llist_aux_last") == 0) {
         test_llist_aux_last();
+    } else if (strcmp(testname, "llist_aux_append_i") == 0) {
+        test_llist_aux_append_i();
+    } else if (strcmp(testname, "llist_aux_prepend_i") == 0) {
+        test_llist_aux_prepend_i();
+    } else if (strcmp(testname, "llist_aux_append_c") == 0) {
+        test_llist_aux_append_c();
+    } else if (strcmp(testname, "llist_aux_prepend_c") == 0) {
+        test_llist_aux_prepend_c();
     }
 
     return EXIT_SUCCESS;

@@ -2,9 +2,10 @@
 #include <stdlib.h>
 
 #include "linked_list.h"
+#include "type_val.h"
 
 typedef struct llist {
-    char val;
+    stype_val val;
     sllist *previous;
     sllist *next;
 } sllist;
@@ -39,7 +40,7 @@ sllist *sllist_next(sllist *llist) {
     return llist->next;
 }
 
-sllist *sllist_append(sllist *llist, char val) {
+sllist *sllist_append(sllist *llist, stype_val val) {
     if (!llist) {
         llist = malloc(sizeof(sllist));
         if (!llist) return NULL;
@@ -83,7 +84,7 @@ sllist *sllist_append(sllist *llist, char val) {
     return llist;
 }
 
-sllist *sllist_prepend(sllist *llist, char val) {
+sllist *sllist_prepend(sllist *llist, stype_val val) {
     if (!llist) {
         llist = malloc(sizeof(sllist));
         if (!llist) return NULL;
@@ -127,13 +128,51 @@ sllist *sllist_prepend(sllist *llist, char val) {
     return llist;
 }
 
-char sllist_value(sllist *llist) {
+sllist *sllist_append_i(sllist *llist, int val) {
+    stype_val val_s;
+    val_s.i = val;
+
+    return sllist_append(llist, val_s);
+}
+
+sllist *sllist_prepend_i(sllist *llist, int val) {
+    stype_val val_s;
+    val_s.i = val;
+
+    return sllist_prepend(llist, val_s);
+}
+
+sllist *sllist_append_c(sllist *llist, char val) {
+    stype_val val_s;
+    val_s.c = val;
+
+    return sllist_append(llist, val_s);
+}
+
+sllist *sllist_prepend_c(sllist *llist, char val) {
+    stype_val val_s;
+    val_s.c = val;
+
+    return sllist_prepend(llist, val_s);
+}
+
+stype_val sllist_value(sllist *llist) {
     if (!llist) {
         fprintf(stderr, "Cannot get value from NULL linked_list\n");
         exit(EXIT_FAILURE);
     }
 
     return llist->val;
+}
+
+int sllist_value_i(sllist *llist) {
+    stype_val val_s = sllist_value(llist);
+    return val_s.i;
+}
+
+char sllist_value_c(sllist *llist) {
+    stype_val val_s = sllist_value(llist);
+    return val_s.c;
 }
 
 sllist *sllist_remove(sllist *llist) {
