@@ -100,6 +100,26 @@ void test_stripe_current_succ() {
     sstripe_free(stripe);
 }
 
+void test_stripe_get_index() {
+    sstripe *stripe = sstripe_create();
+
+    sstripe_current_set(stripe, 10);
+
+    sstripe_cursor_next(stripe);
+
+    sstripe_current_set(stripe, 8);
+
+    sstripe_cursor_next(stripe);
+
+    sstripe_current_set(stripe, 5);
+
+    assert(sstripe_get_index(stripe, 0) == 10);
+    assert(sstripe_get_index(stripe, 1) == 8);
+    assert(sstripe_current(stripe) == 5);
+
+    sstripe_free(stripe);
+}
+
 void usage(char *exec) {
     printf("%s test_name\n");
 }
@@ -130,6 +150,8 @@ int main(int argc, char *argv[]) {
         test_stripe_current_pred();
     } else if (strcmp(testname, "stripe_current_succ") == 0) {
         test_stripe_current_succ();
+    } else if (strcmp(testname, "stripe_current_succ") == 0) {
+        test_stripe_get_index();
     }
 
     return EXIT_SUCCESS;

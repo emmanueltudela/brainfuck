@@ -36,4 +36,10 @@ void sstripe_current_pred(sstripe *stripe);
  */
 void sstripe_current_succ(sstripe *stripe);
 
+/* Returns value at pos n without moving stripe cursor
+ */
+int sstripe_get_index(sstripe *stripe, int n);
+
+void sstripe_print(sstripe *stripe);
+
 #endif

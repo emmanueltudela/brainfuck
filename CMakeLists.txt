@@ -77,3 +77,17 @@ add_test(NAME stripe_current COMMAND stripe_test stripe_current)
 add_test(NAME stripe_current_set COMMAND stripe_test stripe_current_set)
 add_test(NAME stripe_current_pred COMMAND stripe_test stripe_current_pred)
 add_test(NAME stripe_current_succ COMMAND stripe_test stripe_current_succ)
+add_test(NAME stripe_get_index COMMAND stripe_test stripe_get_index)
+
+# brainfuck_test
+
+add_test(NAME brainfuck_create COMMAND brainfuck_test brainfuck_create)
+add_test(NAME brainfuck_free COMMAND brainfuck_test brainfuck_free)
+
+add_test(NAME brainfuck_load_char COMMAND brainfuck_test brainfuck_load_char)
+add_test(NAME brainfuck_load_string COMMAND brainfuck_test brainfuck_load_string)
+add_test(NAME brainfuck_finished COMMAND brainfuck_test brainfuck_finished)
+add_test(NAME brainfuck_iter COMMAND brainfuck_test brainfuck_iter)
+add_test(NAME brainfuck_compute COMMAND brainfuck_test brainfuck_compute)
+add_test(NAME brainfuck_get_index COMMAND brainfuck_test brainfuck_get_index)
+add_test(NAME brainfuck_print COMMAND brainfuck_test brainfuck_print)
